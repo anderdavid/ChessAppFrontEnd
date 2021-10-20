@@ -1,22 +1,25 @@
 import axios from 'axios';
-/* import { API_URL } from '../utils/constants';
-import { getLocalStorage } from '../utils/helpers'; */
+
+export const token = 'token';
 
 const api = axios.create({
   baseURL: `http://localhost:8000`,
   timeout: 3000
 });
 
+async function getTokenFromLocalStorage() {
+  return window.localStorage.getItem(token);
+}
+
 api.interceptors.request.use(
   async (config) => {
     // Do something before request is sent
     try {
-      /*  let session = await getLocalStorage('session');
+      const access_token = await getTokenFromLocalStorage();
 
-      if (session) {
-        session = JSON.parse(session);
-        config.headers['Authorization'] = `Bearer ${session.token}`;
-      } */
+      if (access_token) {
+        config.headers['Authorization'] = `Bearer ${access_token}`;
+      }
       return config;
     } catch (error) {
       return error;

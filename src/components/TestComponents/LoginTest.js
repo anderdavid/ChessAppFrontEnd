@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-/* import axios from 'axios';
-import { auth } from '../../api/auth'; */
 import { useSelector, useDispatch } from 'react-redux';
 import { getAuthRequest } from '../../redux';
 
@@ -14,9 +12,6 @@ export default function LoginTest() {
   });
 
   const logIn = (payload) => {
-    /*  auth(payload).then((response) => {
-      console.log(JSON.stringify(response));
-    }); */
     dispach(getAuthRequest(payload));
   };
 
